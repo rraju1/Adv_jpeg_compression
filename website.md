@@ -14,3 +14,10 @@ Add JPEG math stuff here
 We will now describe the Fast Gradient Sign Method (FGSM) attack. FGSM is an attack algorithm which takes the sign function of the gradient of the classification loss with respect to the input image and multiplies it by a scalar, $\epsilon$. 
 This product is then added back to the original image to create an adversarial example. The analytical form of this attack is given as: 
 
+
+
+
+The attack is assessing the $L_{\infty}$ distance from a legitimate example to see if the maximum distance within this threshold crosses the classification boundary and incurs a misclassification.
+
+
+The adversarial example from the attack should be such that to a human observer the image visually indistingushable from a legitimate example but a classifier would mislabel it. We have conducted preliminary experiments with MNIST on standard 5-layer LeNet CNN architecture with PyTorch, with 3 conv layers and 2 fully connected layers. This network achieves 99.2\% classification accuracy on the MNIST test set. 
