@@ -11,5 +11,5 @@ Add JPEG math stuff here
 
 ## Adverserial images: Fast Sign Gradient Method (FGSM) Attack
 
-We will now describe the Fast Gradient Sign Method (FGSM) attack. FGSM is an attack algorithm which takes the sign function of the gradient of the classification loss with respect to the input image and multiplies it by a scalar, \(\epsilon\). 
+We will now describe the Fast Gradient Sign Method (FGSM) attack. FGSM is an attack algorithm which takes the sign function of the gradient of the classification loss with respect to the input image and multiplies it by a scalar, $\epsilon$. 
 This product is then added back to the original image to create an adversarial example. The analytical form of this attack is given as: 
