@@ -1,0 +1,3 @@
+## Motivation and Problem Statement
+
+Machine learning has been ubiquitous in various fields like computer vision and speech recognition. Particularly, deep neural networks like convolution networks (CNN) have been able to reach recognition rates above human accuracy. However, despite these advancements, neural network classifiers have been found to be susceptible to so called adversarial images. These images are created by altering some pixels in the input space via an optimization algorithm so that a human cannot distinguish it from a natural image but a deep neural network will misclassify the input. This obviously has severe implications considering the rise of self-driving cars and computer vision systems being installed in industrial applications.
