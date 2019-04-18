@@ -1,4 +1,4 @@
-function [ dct,thresholded, jpeg, error, numzeros ] = jpeg_encode( image, threshold )
+function [ dct,thresholded,jpeg,error,numzeros ] = jpeg_encode( image, threshold )
 %jpeg_stephen using DCTII to approximate JPEG compression
 %   inputs:
 %       image is the image to be compressed (multiple of 8 size)
@@ -52,11 +52,13 @@ for i=0:(M/8)-1
     end
 end
 
-% find error
-error_num = (jpeg-double(image)).^2;
-error_denom = (double(image)).^2;
-error = sum(error_num(:))/sum(error_denom(:));
+% scale to 256 values between 0 and 1
+jpeg=round(abs(jpeg)/max(jpeg(:))*255)/255;
 
+% find error
+error_num = (jpeg-image).^2;
+error_denom = (image).^2;
+error = sum(error_num(:))/sum(error_denom(:));
 
 end
 
