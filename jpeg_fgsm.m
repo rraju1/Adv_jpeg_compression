@@ -10,8 +10,8 @@ function jpeg_fgsm
     quality = getQuality(50);
 %     jpeg_compressed_imgs = zeros(height, width, num_img);
     for i = 1:num_img
-        sample = adv_imgs(i,3:height-2,3:width-2)-128;
-        sample_1 = squeeze(sample);
+        sample = adv_imgs(i,3:height-2,3:width-2);
+        sample_1 = uint8(squeeze(sample)*255-128);
         output = compress(sample_1, quality); 
         imwrite(output,'jpegout.jpeg');
         horizontal_pad = zeros(width-4,2);
@@ -22,8 +22,8 @@ function jpeg_fgsm
     end    
     
     sub_test_labels = test_labels(1:num_img);
-%     save('compr.mat','jpeg_compressed_imgs', 'sub_test_labels');
-    %----------------------------------------------------------
+    save('compr_fgsm.mat',jpeg_compressed_imgs, sub_test_labels);
+%     ----------------------------------------------------------
     %Display of Results
     %----------------------------------------------------------
 %     figure(1);imshow(I1);title('original image');
@@ -83,8 +83,8 @@ function out = compress(input, quality)
     % Forward Discret Cosine Transform
     %----------------------------------------------------------
 
-    for i1=[1:8:row]
-        for i2=[1:8:coln]
+    for i1=1:8:row
+        for i2=1:8:coln
             zBLOCK=I(i1:i1+7,i2:i2+7);
             win1=DCT_matrix8*zBLOCK*iDCT_matrix8;
             dct_domain(i1:i1+7,i2:i2+7)=win1;
@@ -93,8 +93,8 @@ function out = compress(input, quality)
     %-----------------------------------------------------------
     % Quantization of the DCT coefficients
     %-----------------------------------------------------------
-    for i1=[1:8:row]
-        for i2=[1:8:coln]
+    for i1=1:8:row
+        for i2=1:8:coln
             win1 = dct_domain(i1:i1+7,i2:i2+7);
             win2=round(win1./quality);
             dct_quantized(i1:i1+7,i2:i2+7)=win2;
@@ -106,8 +106,8 @@ function out = compress(input, quality)
     %-----------------------------------------------------------
     % Dequantization of DCT Coefficients
     %-----------------------------------------------------------
-    for i1=[1:8:row]
-        for i2=[1:8:coln]
+    for i1=1:8:row
+        for i2=1:8:coln
             win2 = dct_quantized(i1:i1+7,i2:i2+7);
             win3 = win2.*quality;
             dct_dequantized(i1:i1+7,i2:i2+7) = win3;
@@ -116,8 +116,8 @@ function out = compress(input, quality)
     %-----------------------------------------------------------
     % Inverse DISCRETE COSINE TRANSFORM
     %-----------------------------------------------------------
-    for i1=[1:8:row]
-        for i2=[1:8:coln]
+    for i1=1:8:row
+        for i2=1:8:coln
             win3 = dct_dequantized(i1:i1+7,i2:i2+7);
             win4=iDCT_matrix8*win3*DCT_matrix8;
             dct_restored(i1:i1+7,i2:i2+7)=win4;
