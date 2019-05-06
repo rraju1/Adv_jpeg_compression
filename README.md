@@ -1,3 +1,6 @@
+CS766 Final Project
+Ravi Raju(rraju2), Stephen Dennison(srdennison), Heng Zhuo(hzhuo2)
+
 This is our repo for JPEG Compression for Adverserial ML
 
 In order to run our project, the user needs to setup Pytorch with the anaconda environment. The FOolbox package will also need to be installed via pip to run the FGSM attack.
