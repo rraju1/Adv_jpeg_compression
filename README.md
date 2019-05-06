@@ -1,4 +1,5 @@
 CS766 Final Project
+
 Ravi Raju(rraju2), Stephen Dennison(srdennison), Heng Zhuo(hzhuo2)
 
 This is our repo for JPEG Compression for Adverserial ML
