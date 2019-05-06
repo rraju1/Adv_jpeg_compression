@@ -55,12 +55,6 @@ end
 
 function out = compress(input, quality)
  
-    % if quality <= 50
-    %     quality = 5000 / quality;
-    % else
-    %     quality = 200 - quality * 2;
-    % end 
-    % quality = quality;
     I = input;
     [row, coln]= size(I);
     I= double(I);
